@@ -2,7 +2,7 @@ let words = ['hello', 'dearly beloved', 'keyblade', 'gottem', 'aq is a goddess']
 let vowels = ['a', 'e', 'i', 'o', 'u', 'y'];
 let consonants = ['b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'z'];
 let wordPrompt = '';
-let displayWord = '';
+let displayWord = [];
 let gamesCount = 0;
 let winsCount = 0;
 let guessCount = 5;
@@ -14,7 +14,7 @@ const genWord = () => {
   let num = Math.floor(Math.random() * words.length);
   wordPrompt = words[num];
   wordPrompt = wordPrompt.split('');
-  displayWord = wordPrompt.slice();
+  // displayWord = wordPrompt.slice();
   // console.log('the word prompt ', wordPrompt);
   // console.log('the display word ', displayWord);
   for(let x = 0; x < vowels.length; x++) {
@@ -27,11 +27,11 @@ const genWord = () => {
     alert('Game is already in process');
   } else {
     gameOn = true;
-    for(let i = 0; i < displayWord.length; i++) {
-      if (displayWord[i] === ' ') {
-        displayWord.splice(i, 1, ' ');
+    for(let i = 0; i < wordPrompt.length; i++) {
+      if (wordPrompt[i] === ' ') {
+        displayWord.push(' ');
       } else {
-        displayWord.splice(i, 1, '_');
+        displayWord.push('_');
       }
     }
     for(i = 0; i < displayWord.length; i++) {
@@ -42,10 +42,10 @@ const genWord = () => {
 
 //guess letter func
 const letterGuess = (e) => {
-  console.log(e.toString());
+  console.log(e);
   // console.log('the prompt ', wordPrompt);
   // console.log(displayWord);
-  console.log(e.toString() == 'a');
+  console.log('these dont match? ', e === 'a');
   if (!wordPrompt.includes(e)) {
     guessCount = guessCount - 1;
   } else {
