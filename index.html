@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/d3js/5.7.0/d3.min.js"></script>
+  <script src="./index.js"></script>
+  <title>Hangman</title>
+</head>
+<body>
+  <div class="gameDisplay">
+    <div class="scoreboard">
+      <h2>Wins - Total Games</h2>
+    </div>
+    <div class="guesses">
+      <h2>
+          Guesses Left
+      </h2>
+    </div>
+    <div class="wordDisplay">
+      Word will show here
+    </div>
+    <div class="choices">
+      <ul class="vowels"></ul>
+      <ul class="consonants"></ul>
+    </div>
+  </div>
+  <button class="genButton"> Click me to start </button>
+</body>
+<script>
+  $('document').ready(() => {
+    // let e = $('.gameDisplay').keydown();
+    $('.scoreboard').append(`<h2 class="winCount"> ${winsCount} - ${gamesCount}</h2>`)
+    $('.guesses').append(`<h3>${guessCount}</h3>`)
+    $('.genButton').click(() => {genWord()})
+    $('.choices').click((e) => {
+      let letter = $(e.target).text();
+      letterGuess(letter);
+    });
+  })
+</script>
+</html>
