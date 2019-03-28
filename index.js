@@ -49,6 +49,7 @@ const letterGuess = (e) => {
   console.log('these dont match? ', e === 'a');
   if (!wordPrompt.includes(e)) {
     guessCount = guessCount - 1;
+    $('.guesses').text(guessCount);
   } else {
     for (let j = 0; j < wordPrompt.length; j++) {
       console.log(e === wordPrompt[j]);
