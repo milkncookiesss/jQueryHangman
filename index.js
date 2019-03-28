@@ -18,10 +18,10 @@ const genWord = () => {
   // console.log('the word prompt ', wordPrompt);
   // console.log('the display word ', displayWord);
   for(let x = 0; x < vowels.length; x++) {
-    $('.vowels').append(`<ul class="letter"> ${vowels[x]} </ul>`);
+    $('.vowels').append(`<ul class="letter">${vowels[x]}</ul>`);
   }
   for(x = 0; x < consonants.length; x++) {
-    $('.consonants').append(`<ul class="letter"> ${consonants[x]} </ul>`);
+    $('.consonants').append(`<ul class="letter">${consonants[x]}</ul>`);
   }
   if (gameOn) {
     alert('Game is already in process');
@@ -35,13 +35,14 @@ const genWord = () => {
       }
     }
     for(i = 0; i < displayWord.length; i++) {
-    $('.wordDisplay').append(`<ul> ${displayWord[i]} <ul>`);
+    $('.wordDisplay').append(`<ul>${displayWord[i]}<ul>`);
     }
   }
 }
 
 //guess letter func
 const letterGuess = (e) => {
+  // debugger;
   console.log(e);
   // console.log('the prompt ', wordPrompt);
   // console.log(displayWord);
