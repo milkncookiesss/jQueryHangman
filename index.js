@@ -35,7 +35,7 @@ const genWord = () => {
       }
     }
     for(i = 0; i < displayWord.length; i++) {
-    $('.wordDisplay').append(`<ul>${displayWord[i]}<ul>`);
+    $('.display-here').append(`<ul class="displayWords">${displayWord[i]}<ul>`);
     }
   }
 }
@@ -43,28 +43,32 @@ const genWord = () => {
 //guess letter func
 const letterGuess = (e) => {
   // debugger;
-  console.log(e);
-  // console.log('the prompt ', wordPrompt);
-  // console.log(displayWord);
-  console.log('these dont match? ', e === 'a');
-  if (!wordPrompt.includes(e)) {
+  // console.log('the e target ', $(e.target).text());
+  let guess = $(e.target).text();
+  let display = document.getElementsByClassName('displayWords');
+
+  //deletes clicked letter
+  $(e.target).remove();
+
+  if (!wordPrompt.includes(guess)) {
     guessCount = guessCount - 1;
     $('.guessLeft').text(guessCount);
+    if (gameOn) {
+      winCheck();
+    }
   } else {
+    //2 ways to possibly display the letters
+      //ideally I want to go through the dom and replace '_' at the correct position with the correct letter
     for (let j = 0; j < wordPrompt.length; j++) {
-      console.log(e === wordPrompt[j]);
-      if (e === wordPrompt[j]) {
-        displayWord[j] === e;
+      if (guess === wordPrompt[j]) {
+        displayWord.splice(j, 1, guess);
+        display[j].textContent = guess;
       }
     }
+    if (gameOn) {
+      winCheck();
+    }
   }
-  // for(let j = 0; j < wordPrompt.length; j++) {
-  //   if (e === wordPrompt[j]) {
-  //     displayWord.splice(j, 1, e);
-  //   } else {
-  //     guessCount--;
-  //   }
-  // }
 }
 
 //checks if user wins
@@ -73,6 +77,8 @@ const winCheck = () => {
     winsCount++;
     gameOn = false;
     $('.wordDisplay').text('Well done you win!');
-    $('.genButton').html(`<button class="genButton"> Play again? </button>`);
+    $('.genButton').text(`Play again?`);
+  } else if (guessCount <= 0) {
+    alert('you lose sucka');
   }
 }
